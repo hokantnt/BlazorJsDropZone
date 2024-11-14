@@ -1,0 +1,83 @@
+﻿@page "/dropzone"
+@rendermode InteractiveServer
+@inject IJSRuntime JSRuntime
+@implements IAsyncDisposable
+@inject FileService FileService
+
+<h1>Upload files!</h1>
+
+<div @ref="dropZoneElement" class="drop-zone upload-container">
+    <i class="fas fa-cloud-upload-alt upload-cloudicon"></i>
+
+    <p>Drag & Drop to upload File</p>
+    <p>OR</p>
+    <button type="button" class="button-upload" onclick="document.getElementById('inputFile').click()"> Browse File </button>
+    <InputFile id="inputFile" OnChange="@OnFileSelected" @ref="inputFile" style="display:none" />
+</div>
+
+@if (FileService.LoadedFiles.Count() > 0){
+<ul class="file-list">
+    @foreach (var file in FileService.LoadedFiles)
+    {
+        <li class="file-item">
+            <span class="file-name">@GetShortenedFileName(file.Name)</span>
+            <button class="delete-btn" @onclick="() => FileService.LoadedFiles.Remove(file)">
+                <i class="fas fa-trash-alt"></i> <!-- Font Awesome soptunna ikon -->
+            </button>
+        </li>
+    }
+</ul>
+}
+
+@code {
+    ElementReference dropZoneElement;
+    InputFile inputFile;
+
+    IJSObjectReference _module;
+    IJSObjectReference _dropZoneInstance;
+
+    private Grid<string> _grid = default!;
+    private int maxAllowedFiles = 10;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Load the JS file
+            _module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./Components/Pages/DropZone.razor.js");
+
+            // Initialize the drop zone
+            _dropZoneInstance = await _module.InvokeAsync<IJSObjectReference>("initializeFileDropZone", dropZoneElement, inputFile.Element);
+        }
+    }
+
+    private void OnFileSelected(InputFileChangeEventArgs e)
+    {
+        FileService.LoadedFiles.Clear();
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            FileService.LoadedFiles.Add(file);
+        }
+    }
+
+    // Metod för att korta filnamn som är längre än 30 tecken
+    private string GetShortenedFileName(string fileName)
+    {
+        return fileName.Length > 30 ? fileName.Substring(0, 30) + "..." : fileName;
+    }
+
+    // Unregister the drop zone events
+    public async ValueTask DisposeAsync()
+    {
+        if (_dropZoneInstance != null)
+        {
+            await _dropZoneInstance.InvokeVoidAsync("dispose");
+            await _dropZoneInstance.DisposeAsync();
+        }
+
+        if (_module != null)
+        {
+            await _module.DisposeAsync();
+        }
+    }
+}

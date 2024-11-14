@@ -1,0 +1,106 @@
+﻿.drop-zone {
+    width: 40%;
+    min-height: 15px;
+    border: 2px dashed #0087F7;
+    border-radius: 5px;
+    text-align: center;
+    background-color: mediumslateblue;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.drop-zone.hover {
+    border-style: solid;
+}
+
+.upload-cloudicon {
+    font-size: 48px;
+    color: lightcyan;
+}
+
+.button-upload {
+    background-color: lightcyan; /* Vit bakgrund */
+    color: mediumslateblue; /* Mörk textfärg */
+    border: none;
+    border-radius: 4px; /* Rundade kanter */
+    padding: 10px 20px; /* Inre marginaler */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Mjuk övergång för hover-effekter */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Liten skugga */
+}
+
+    .button-upload:hover {
+        background-color: #f0f0f0; /* Ljusgrå bakgrund vid hover */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Djupare skugga vid hover */
+    }
+
+    .button-upload:active {
+        background-color: #e0e0e0; /* Ännu mörkare grå vid aktivt tillstånd */
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* Mindre skugga vid klick */
+    }
+
+.upload-container {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: #ffffff;
+}
+
+    .upload-container p {
+        font-weight: 500;
+        font-size: 16px; /* Anpassa storleken om det behövs */
+    }
+
+    .upload-container button {
+        font-weight: 600;
+    }
+
+
+
+.file-list {
+    list-style-type: none; /* Tar bort punkterna från listan */
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ddd; /* Runt om hela listan */
+    max-width: 500px; /* Maximal bredd på listan */
+}
+
+.file-item {
+    display: flex; /* Gör det möjligt att justera innehållet horisontellt */
+    justify-content: space-between; /* För att separera filnamnet och knappen */
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Radavgränsare mellan listobjekt */
+    align-items: center; /* Vertikal centrering */
+}
+
+    .file-item:last-child {
+        border-bottom: none; /* Ingen rad under sista objektet */
+    }
+
+.file-name {
+    max-width: 80%; /* Gör filnamnet flexibel så att det inte går utanför */
+    white-space: nowrap; /* Förhindrar radbrytning */
+    overflow: hidden; /* Döljer överskottet */
+    text-overflow: ellipsis; /* Lägg till "..." om texten är för lång */
+    padding-right: 10px; /* Lite utrymme på höger sida */
+}
+
+.delete-btn {
+    background: none; /* Ingen bakgrundsfärg */
+    border: none; /* Ingen ram */
+    cursor: pointer; /* Muspekaren blir en hand */
+    color: #f00; /* Röd färg för soptunnan */
+}
+
+    .delete-btn i {
+        font-size: 20px; /* Storlek på ikonen */
+    }
+
+    .delete-btn:hover {
+        color: #a00; /* Mörkare röd vid hover */
+    }
+
+    .delete-btn:focus {
+        outline: none; /* Ta bort fokusringen */
+    }
