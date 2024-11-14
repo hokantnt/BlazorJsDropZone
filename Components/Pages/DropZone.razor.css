@@ -4,18 +4,25 @@
     border: 2px dashed #0087F7;
     border-radius: 5px;
     text-align: center;
-    background-color: lightblue;
+    background-color: mediumslateblue;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
-    .drop-zone.hover {
-        border-style: solid;
-    }
+.drop-zone.hover {
+    border-style: solid;
+}
+
+.upload-cloudicon {
+    font-size: 48px;
+    color: lightcyan;
+}
 
 .button-upload {
-    background-color: #ffffff; /* Vit bakgrund */
-    color: #4a4a4a; /* Mörk textfärg */
+    background-color: lightcyan; /* Vit bakgrund */
+    color: mediumslateblue; /* Mörk textfärg */
     border: none;
-    border-radius: 8px; /* Rundade kanter */
+    border-radius: 4px; /* Rundade kanter */
     padding: 10px 20px; /* Inre marginaler */
     font-size: 16px;
     font-weight: 600;
