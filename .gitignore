@@ -1,0 +1,59 @@
+## Ignore build results
+bin/
+obj/
+
+## User-specific files
+.vs/
+.vscode/
+.idea/
+
+## User-specific configuration files
+.vsconfig
+.idea/
+
+## ASP.NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Node.js dependencies
+node_modules/
+
+# Blazor WebAssembly (WASM) output
+wwwroot/_content/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# JetBrains Rider files
+.idea/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# ASP.NET temporary files
+.vs2019/
+
+# Debugger files
+*.pdb
+*.log
+
+# NUnit test result
+TestResult.xml
+
+# Backup files
+*~ 
+*.bak
+*.swp
+
+# Thumbnails
+Thumbs.db
+
+# IDE specific
+.vscode/
