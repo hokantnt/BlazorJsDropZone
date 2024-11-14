@@ -6,26 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Components\Pages\DropZone.razor.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Components\Pages\DropZone.razor.js" />
-    <Content Include="Components\Pages\Home.razor.js" />
-  </ItemGroup>
-
-	<ItemGroup>
-		<!-- Kopierar alla filer i StaticLibraries till wwwroot -->
-		<None Update="StaticLibraries\**\*">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="StaticLibraries\js\" />
-	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Blazor.Bootstrap" Version="3.1.1" />
