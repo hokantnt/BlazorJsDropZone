@@ -2,30 +2,32 @@
 @rendermode InteractiveServer
 @inject IJSRuntime JSRuntime
 @implements IAsyncDisposable
-@inject FileService FileService;
+@inject FileService FileService
 
 <h1>Upload files!</h1>
 
-<div @ref="dropZoneElement" class="drop-zone">
-    <p>Drop a file</p>
-    <InputFile OnChange="@OnFileSelected" @ref="inputFile" />
+<div @ref="dropZoneElement" class="drop-zone upload-container">
+    <i class="fas fa-cloud-upload-alt" style="font-size: 48px; color: #007bff;"></i>
+
+    <p>Drag & Drop to upload File</p>
+    <p>OR</p>
+    <button type="button" class="button-upload" onclick="document.getElementById('inputFile').click()"> Browse File </button>
+    <InputFile id="inputFile" OnChange="@OnFileSelected" @ref="inputFile" style="display:none" />
 </div>
 
-<Grid TItem="string"
-      Class="table table-hover table-bordered table-striped"
-      Data="FileService.LoadedFiles.Select(lf => lf.Name)"
-      @ref="_grid"
-      AllowSelection="false"
-      Responsive="true">
-    <GridColumns>
-        <GridColumn TItem="string"
-                    HeaderText="Filename"
-                    Sortable="false">
-            @context
-        </GridColumn>
-    </GridColumns>
-</Grid>
-
+@if (FileService.LoadedFiles.Count() > 0){
+<ul class="file-list">
+    @foreach (var file in FileService.LoadedFiles)
+    {
+        <li class="file-item">
+            <span class="file-name">@GetShortenedFileName(file.Name)</span>
+            <button class="delete-btn" @onclick="() => FileService.LoadedFiles.Remove(file)">
+                <i class="fas fa-trash-alt"></i> <!-- Font Awesome soptunna ikon -->
+            </button>
+        </li>
+    }
+</ul>
+}
 
 @code {
     ElementReference dropZoneElement;
@@ -56,6 +58,12 @@
         {
             FileService.LoadedFiles.Add(file);
         }
+    }
+
+    // Metod för att korta filnamn som är längre än 30 tecken
+    private string GetShortenedFileName(string fileName)
+    {
+        return fileName.Length > 30 ? fileName.Substring(0, 30) + "..." : fileName;
     }
 
     // Unregister the drop zone events
